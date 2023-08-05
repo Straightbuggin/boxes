@@ -1,5 +1,6 @@
 use bevy::prelude::*;
 
+
 fn main() {
     App::new().add_plugins(DefaultPlugins.set(WindowPlugin {
         primary_window: Some(Window {
@@ -8,7 +9,7 @@ fn main() {
         }),
         ..default()
     }))
-        .add_startup_system(setup)
+        .add_startup_systems((setup, spawn_board))
         .run()
 
 }
@@ -20,6 +21,7 @@ fn setup(mut commands: Commands) {
 
 const TILE_SIZE: f32 = 40.0;
 
+#[derive(Component)]
 struct Board {
     size: u8,
 }
